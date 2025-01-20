@@ -1,0 +1,88 @@
+﻿<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="" />
+  <title>JWST模拟星空</title>
+	<style>
+/*
+		myCanvas{
+			display: block;
+			margin: 0 auto;
+			border:1px solid red;
+		}
+*/
+
+    @font-face {
+      font-family:'YFF-012';
+      src: url('font/YFF-012.ttf');
+    }
+    @font-face {
+      font-family:'Auraka點陣宋';
+      src: url('font/Auraka點陣宋.ttf');
+    }
+
+
+</style>
+
+
+</head>
+<body>
+
+<!--float:left;float:center;-->
+<!--绝对坐标 position:absolute;left:0px;top:0px;-->
+<!--相对坐标 position:relative;left:0px;top:0px;-->
+<!--画布居中：外壳div的尺寸要与画布的尺寸一致-->
+
+<div id="xtbg"  style="float:left; width:100%;height:100%;margin:0 auto; position:absolute;left:0px;top:0px;display:none;">
+ <img src ="shapes/Canvas_sun.png" margin-top:20px; width="1020" height="760" border="0" />
+</div>
+<div id="xtgif" style="position:absolute;left:0px;top:0px; display:none;" >
+  <img src ="shapes/sun.gif"  width="100%" height="100%" border="0" alt="sun" />
+</div>
+<!--div style="float:left; width:100% ;height:100%; margin:0 auto;position:absolute;left:0px;top:0px;display:none; "-->
+<div style=            "width:1020px;height:760px;margin:0 auto;position:absolute;left:0px;top:0px;">
+  <canvas id="myCanvas" width="1020" height="760" ></canvas>
+
+  <!--border-style:none none solid none; /*  上 右 下  左 */ -->
+  <input type="text" maxlength='5' name=inyear id=inyear size='5' value=2007 style="height:24px;width:55px;color:#f00;font-family: 'YFF-012'; font-size:20px;border:0px solid groove;position:absolute;left:845px;top:495px;opacity:1;border-style:none none none none;background-color:transparent; text-align:right;"/>
+  <input type="text" maxlength='2' name=inmon  id=inmon  size='2' value= 04  style="color:#f00;font-family: 'YFF-012'; font-size:20px;border:0px solid groove;position:absolute;left:930px;top:495px;opacity:1;border-style:none none none none;background-color:transparent; text-align:right;"/>
+  <input type="text" maxlength='2' name=indate id=indate size='2' value= 13  style="color:#f00;font-family: 'YFF-012'; font-size:20px;border:0px solid groove;position:absolute;left:975px;top:495px;opacity:1;border-style:none none none none;background-color:transparent; text-align:right;"/>
+
+  <input type="text" maxlength='2' name=inhou id=inhou size='2' value=07 style="color:#f00;font-family: 'YFF-012'; font-size:20px;border:0px solid groove;position:absolute;left:910px;top:525px;opacity:1;border-style:none none none none;background-color:transparent;text-align:right;"/>
+  <input type="text" maxlength='2' name=inmin id=inmin size='2' value=30 style="color:#f00;font-family: 'YFF-012'; font-size:20px;border:0px solid groove;position:absolute;left:945px;top:525px;opacity:1;border-style:none none none none;background-color:transparent;text-align:right; "/>
+  <input type="text" maxlength='2' name=insec id=insec size='2' value=30 style="color:#f00;font-family: 'YFF-012'; font-size:16px;border:0px solid groove;position:absolute;left:978px;top:530px;opacity:1;border-style:none none none none;background-color:transparent;text-align:right; "/>
+
+  <input type="text" maxlength='2' name=instp id=instp size='2' value=00 style="color:#f00;font-family: 'YFF-012'; font-size:16px;border:0px solid groove;position:absolute;left:945px;top:555px;opacity:1;border-style:none none none none;background-color:transparent;text-align:right; "/>
+
+  <input type="text" maxlength='11' name=Cx_J id=Cx_J size='11' value=131.150000 style="color:#0ff;font-family: 'YFF-012'; font-size:22px;border:2px solid groove;position:absolute;left:850px;top:690px;opacity:.5; background: url(shapes/pm1.png) no-repeat center right;"/>
+  <input type="text" maxlength='11' name=Cx_W id=Cx_W size='11' value=46.633333  style="color:#0ff;font-family: 'YFF-012'; font-size:22px;border:2px solid groove;position:absolute;left:850px;top:725px;opacity:.5; background: url(shapes/pm1.png) no-repeat center right;"/>
+
+  <input type=button value="存"  onclick="setCookie('Myjd',Cx_J.value)" style="height:32px;width:40px;font-size:22px;position:absolute;left:978px;top:725px;" />
+ <a target="_parent" href="../jwstwnl.html" title="JWST综合万年历" style= "width:36px;height:20px;margin:0 auto;position:absolute;left:800px;top:740px;display:block;"><span style="color:#06C;text-decoration:underline;"><B>首页</B></span></a>
+  <!--div id="zx_key" style= "width:796px;height:20px;margin:0 auto;position:absolute;left:0px;top:500px;display:block;"-->
+  <div id="xk_key" style="position:absolute;left:0px;top:0px; display:block;" >
+    <input id=Xi_ming   type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:25px; top:740px;" / >
+    <input id=Xi_xian   type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:70px; top:740px;" / >
+    <input id=Zh_ming   type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:115px;top:740px;" / >
+    <input id=Zh_xian   type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:160px;top:740px;" / >
+    <input id=Zh_gong   type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:175px;top:740px;" / >
+    <input id= chidao   type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:220px;top:740px;" / >
+    <input id=fangwei   type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:265px;top:740px;" / >
+    <input id=yindao    type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:490px;top:740px;" / >
+    <input id=huangdao  type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:535px;top:740px;" / >
+    <input id=xingxing1 type=checkbox checked style="height:16px;width:16px;font-size:16px;position:absolute;left:580px;top:740px;" / >
+    <input id=xingxing2 type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:625px;top:740px;" / >
+    <input id=guangzhao type=checkbox checked style="height:16px;width:16px;font-size:16px;position:absolute;left:670px;top:740px;" / >
+    <input id=yinhexi   type=checkbox checked style="height:16px;width:16px;font-size:16px;position:absolute;left:715px;top:740px;" / >
+    <input id=gundong   type=checkbox         style="height:16px;width:16px;font-size:16px;position:absolute;left:760px;top:740px;" / >
+  </div>
+</div>
+<script type="text/javascript" src="js/jwststars.js"></script>
+
+<script>
+  //fixed
+</script>
+
+</body>
+</html>
